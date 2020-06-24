@@ -1,0 +1,289 @@
+/* Navigation Bar */
+.navBar {
+    list-style: none;
+    margin: 1.5em 5em 3em 0;
+    border-top: darkgray solid 2px;
+    border-bottom: darkgray solid 2px;
+    background-color: orange;
+    /* width: 100%;
+    height: 100%; */
+}
+
+.navList {
+    display: none;
+}
+
+.navBar:hover .navList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.navBar:hover .menu {
+    display: none;
+}
+
+/* Elements*/
+a {
+    text-decoration: none;
+    color: darkgray;   
+}
+
+a:hover {
+    color: white;
+    background-color: darkgray;
+}
+
+h1, 
+#subheading {
+    color: white;
+    margin-inline-start: 0;
+    margin: 0 15px;
+}
+
+body {
+   margin-left: 0; 
+   /* background-color: lightgrey;   */
+}
+
+.column {
+    margin-bottom: 2em;
+    border-bottom: solid darkgray 2px;
+}
+
+.column h2 {
+    /* background-color: rgb(216, 200, 200); */
+    padding: .2em;
+    text-transform: uppercase;
+    color: red;
+    font-style: bold;
+    font-size: 1.2em;
+}
+
+.dots {
+    border-top: solid darkgray 5px;
+}
+
+.lines {
+    text-align: right;
+}
+
+.lines h2,
+.images h2 {
+    border-top: solid darkgray 2px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.5em;
+}
+
+.transition h2 {
+    padding-bottom: .5em;
+}
+
+.transition a {
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 1.1em;
+    color: black;
+    border: solid black 2px;
+    border-radius: 1em;
+    padding: .5em;
+}
+
+.transition a:hover {
+    background-color: white;
+}
+/* ------------------------>> DATA.HTML*/
+
+
+form {
+    /* box-sizing: border-box; */
+    max-width: 450px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    border: 5px solid lightgrey;
+    border-radius: 10px;
+    box-shadow: 0 20px 20px rgba(0,0,50, .15);
+}
+
+label {
+    display: block;
+    text-align: left;
+    padding: 20px 0;
+}
+
+input[type="radio"],
+input[type="radio"] + label {
+  display: inline;
+  margin: 5px 5px 5px 0;
+
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-around;
+}
+
+.color-flag {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+#black + label {
+    background-color: black;
+}
+
+#brown + label {
+    background-color: brown;
+}
+
+#blue + label {
+    background-color: blue;
+}
+
+#red + label {
+    background-color: red;
+}
+
+#yellow + label {
+    background-color: yellow;
+}
+
+.btn {
+    background: red;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 20px 30px;
+    display: block;
+    text-align: center;
+    margin: 40px auto 20px;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+/* ------------------------>> PALETTE.HTML*/
+
+#grid {
+    text-align: center;
+    
+}
+
+.dot {
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+
+/* Layout */
+.page {
+    /* display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */ 
+    /*IT WAS FOR STICKY FOOTER, CHANGED TO FIX  */
+}
+
+.banner {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: white;
+    width: 100%; /*Needed so that sticky header background is not translucent*/
+    padding-bottom: 1.9em; /* Needed so that sticky back white covers all */
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.header {
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: red;
+    margin-left: 2em;
+    margin-top: 1.5em;
+}
+
+.pageContent {
+    margin-top: 8em;
+    /* flex: 1; For sticky footer to work */
+}
+
+.text {
+    margin: 0 2em;
+    display: flex;
+    flex-direction: column;   
+    color: gray;
+}
+
+.transition {
+    background-color: rgba(255, 217, 0, 0.959);
+    padding: 1em;
+    text-align: center;
+    margin-bottom: 8em;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(90, 86, 86);
+    padding: 2em 0;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 550px) {
+    .banner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navBar {
+        flex-direction: column;
+    }
+
+    .text {
+        flex-direction: row;
+        color: beige;
+    }
+
+    .column {
+        padding: 1.2em;
+    }
+
+    .dots {
+        border-top: none;
+
+    }
+
+    .images {
+        display: inline-block;
+    }
+
+    .dots h2 {
+        border-top: solid darkgray 2px;
+    }
+
+    
+    
+}
+
+@media screen and (min-width: 1000px) {
+    .text {
+        color: rgb(98, 146, 161);
+    }
+    
+}

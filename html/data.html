@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palette Generator</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page">
+    <header class="banner">
+        <div class="header">
+            <h1>Palette Generator</h1>
+            <h2 id="subheading">Data</h2>
+        </div>
+        <nav>
+            <ul class='navBar'>
+                <span class="menu">Menu</span>
+                <div class="navList">
+                    <li><a href="intro.html">Home</a></li>
+                    <li><a href="data.html">Data</a></li>
+                    <li><a href="palette.html">Palette</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="pageContent">
+        <form action="#" method="post">
+    
+            <!-- Palette Number Composition Selection -->
+            <label for =“grid-number”>Select the number of elements in the palette</label>
+            <select id=“grid-number” name=“grid-number”>
+                <optgroup>
+                    <option value=“3”>3</option>
+                    <option value=“5”>5</option>
+                    <!-- 10 is max for smallest view -->
+                    <option value=“10”>10</option> 
+                    <option value=“15”>15</option>
+                    <option value=“20”>20</option>
+                    <option value=“30”>30</option>
+                </optgroup>
+            </select>
+        
+            <!-- Palette resolution Selection -->
+            <label>Select the resolution for the palette</label>
+            <select id=“grid-resolution" name=“grid-resolution”>
+                <optgroup>
+                    <option value=“low”>Low</option>
+                    <option value=“medium”>Medium</option>
+                    <option value=“high”>High</option>
+                </optgroup>
+            </select>
+        
+            <!-- Color Selection -->
+            <label>Select the color for the palette</label>
+            <div class="radio-group">
+                <input type="radio" id="black" name="color" value="black"><label class="color-flag" for="black">Black</label>
+                <input type="radio" id="brown" name="color" value="brown"><label class="color-flag" for="brown">Brown</label>
+                <input type="radio" id="blue" name="color" value="blue"><label class="color-flag" for="blue">Blue</label>
+                <input type="radio" id="red" name="color" value="red"><label class="color-flag" for="red">Red</label>
+                <input type="radio" id="yellow" name="color" value="yellow"><label class="color-flag" for="yellow">Yellow</label><br>
+            </div>
+
+            <button class="btn" id="buildIt"type="button">Build It!</button>
+    
+
+       </form>
+    </main>
+
+    <footer class="footer">
+        <span>For info, contact: <a href=“mailto:thisEmail@gmail.com”>thisEmail@gmail.com</a></span>
+    </footer>    
+    
+    <script src='../script.js'></script>
+</body>
+</html>

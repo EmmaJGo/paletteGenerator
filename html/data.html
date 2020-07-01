@@ -31,28 +31,29 @@
             <!-- Palette Number Composition Selection -->
             <label for =“grid-number”>Select the number of elements in the palette</label>
             <select id=“grid-number” name=“grid-number”>
-                <optgroup>
-                    <option value=“3”>3</option>
-                    <option value=“5”>5</option>
-                    <!-- 10 is max for smallest view -->
-                    <option value=“10”>10</option> 
-                    <option value=“15”>15</option>
-                    <option value=“20”>20</option>
-                    <option value=“30”>30</option>
+                <optgroup label="Number of Elements">
+                    <option value="" selected> --- Select --- </option>
+                    <option class="gridNumber" value=“3”>3</option>
+                    <option class="gridNumber" value=“5”>5</option>
+                    <option class="gridNumber" value=“10”>10</option> 
+                    <option class="gridNumber" value=“15”>15</option>
+                    <option class="gridNumber" value=“20”>20</option>
+                    <option class="gridNumber" value=“30”>30</option>
                 </optgroup>
             </select>
         
-            <!-- Palette resolution Selection -->
+            <!-- Palette Resolution Selection -->
             <label>Select the resolution for the palette</label>
             <select id=“grid-resolution" name=“grid-resolution”>
-                <optgroup>
-                    <option value=“low”>Low</option>
-                    <option value=“medium”>Medium</option>
-                    <option value=“high”>High</option>
+                <optgroup label="Resolution of Palette">
+                    <option value="" selected> --- Select --- </option>
+                    <option class="gridResolution" value=“low”>Low</option>
+                    <option class="gridResolution" value=“medium”>Medium</option>
+                    <option class="gridResolution" value=“high”>High</option>
                 </optgroup>
             </select>
         
-            <!-- Color Selection -->
+            <!-- Palette Color Selection -->
             <label>Select the color for the palette</label>
             <div class="radio-group">
                 <input type="radio" id="black" name="color" value="black"><label class="color-flag" for="black">Black</label>
@@ -62,8 +63,10 @@
                 <input type="radio" id="yellow" name="color" value="yellow"><label class="color-flag" for="yellow">Yellow</label><br>
             </div>
 
-            <button class="btn" id="buildIt"type="button">Build It!</button>
-    
+            <aside class="transitionData">
+                <button class="btn" id="submit" type="button"><span>Submit</span><br>your choices!</button>
+                <a class="btn" id="buildIt" href="palette.html"><span>Press</span><br>to Build!</a>
+            </aside>
 
        </form>
     </main>
@@ -72,6 +75,7 @@
         <span>For info, contact: <a href=“mailto:thisEmail@gmail.com”>thisEmail@gmail.com</a></span>
     </footer>    
     
-    <script src='../script.js'></script>
+    
 </body>
+<script src='../script.js'></script>
 </html>

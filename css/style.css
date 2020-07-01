@@ -1,22 +1,33 @@
 /* Navigation Bar */
 .navBar {
     list-style: none;
-    margin: 1.5em 5em 3em 0;
-    border-top: darkgray solid 2px;
-    border-bottom: darkgray solid 2px;
-    background-color: orange;
-    /* width: 100%;
-    height: 100%; */
+    margin: 2.2em 3em 3em 0;
 }
 
 .navList {
     display: none;
 }
 
+.menu {
+    font-size: 1.1em;
+    color: darkgray;
+    padding: 5px 5px 5px 30px;
+    border-radius: 3px;
+    box-shadow: -10px 10px 3px 10px rgba(211, 211, 211, 0.08);
+}
+
 .navBar:hover .navList {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    background-color: rgba(211, 211, 211, 0.08);
+    padding: 5px 5px;
+    font-size: 1.1em;
+    width: 70px;
+    height: 120px;
+    border-radius: 3px;
+    
 }
 
 .navBar:hover .menu {
@@ -26,33 +37,39 @@
 /* Elements*/
 a {
     text-decoration: none;
-    color: darkgray;   
+    color: darkgray;
+    padding: 5px 5px 5px 20px;
+    border-radius: 3px;
 }
 
 a:hover {
     color: white;
-    background-color: darkgray;
+    background-color: lightgrey;
 }
 
 h1, 
 #subheading {
-    color: white;
+    color: red;
+    text-shadow: 3px 3px lightgray;
     margin-inline-start: 0;
     margin: 0 15px;
 }
 
 body {
    margin-left: 0; 
-   /* background-color: lightgrey;   */
+}
+
+.images {
+    border: 2px solid darkgray;
+    width: 350px;
+    height: 350px;
 }
 
 .column {
     margin-bottom: 2em;
-    border-bottom: solid darkgray 2px;
 }
 
-.column h2 {
-    /* background-color: rgb(216, 200, 200); */
+section h2 {
     padding: .2em;
     text-transform: uppercase;
     color: red;
@@ -69,7 +86,7 @@ body {
 }
 
 .lines h2,
-.images h2 {
+.figures h2 {
     border-top: solid darkgray 2px;
 }
 
@@ -78,11 +95,11 @@ p {
     line-height: 1.5em;
 }
 
-.transition h2 {
+.transitionIntro h2 {
     padding-bottom: .5em;
 }
 
-.transition a {
+.transitionIntro a {
     text-decoration: none;
     font-weight: bolder;
     font-size: 1.1em;
@@ -92,19 +109,19 @@ p {
     padding: .5em;
 }
 
-.transition a:hover {
+.transitionIntro a:hover {
     background-color: white;
 }
-/* ------------------------>> DATA.HTML*/
 
+/* ------------------------>> DATA.HTML*/
 
 form {
     /* box-sizing: border-box; */
     max-width: 450px;
     margin: 0 auto;
     padding-left: 20px;
-    padding-bottom: 20px;
-    border: 5px solid lightgrey;
+    margin-bottom: 100px;
+    border: 1px solid lightgrey;
     border-radius: 10px;
     box-shadow: 0 20px 20px rgba(0,0,50, .15);
 }
@@ -137,20 +154,61 @@ input[type="radio"] + label {
     background-color: black;
 }
 
+#black + label:hover {
+    background-color: gray;
+}
+
 #brown + label {
     background-color: brown;
+}
+
+#brown + label:hover {
+    background-color: rgba(165, 42, 42, 0.445);
 }
 
 #blue + label {
     background-color: blue;
 }
 
+#blue + label:hover {
+    background-color: rgba(0, 0, 255, 0.329);
+}
+
 #red + label {
     background-color: red;
 }
 
+#red + label:hover {
+    background-color: rgba(255, 0, 0, 0.541);
+}
+
 #yellow + label {
     background-color: yellow;
+}
+
+#yellow + label:hover {
+    background-color: rgba(255, 255, 0, 0.123);
+    color: lightgray;
+}
+
+input[type="radio"]:checked + label {
+    color: whitesmoke;
+    border: 5px solid whitesmoke;
+}
+
+select {
+    background-color: lightgray;
+    color: white;
+    border-radius: 5px;
+    border: 2px silver solid;
+}
+
+select:hover {
+    background-color: rgba(211, 211, 211, 0.39);
+}
+
+option {
+    background: red;
 }
 
 .btn {
@@ -165,33 +223,42 @@ input[type="radio"] + label {
 }
 
 .btn:hover {
+    background:  rgba(255, 0, 0, 0.541);
+}
+
+.transitionData {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn:hover {
     cursor: pointer;
 }
+
+#buildIt {
+    display: none;
+}
+
 
 /* ------------------------>> PALETTE.HTML*/
 
 #grid {
     text-align: center;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: center; */
     
 }
 
 .dot {
-    background-color: red;
+    border: 1px solid red;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     display: inline-block;
 }
 
-
-
 /* Layout */
-.page {
-    /* display: flex;
-    flex-direction: column;
-    /* min-height: 100vh; */ 
-    /*IT WAS FOR STICKY FOOTER, CHANGED TO FIX  */
-}
 
 .banner {
     position: fixed;
@@ -202,35 +269,35 @@ input[type="radio"] + label {
     padding-bottom: 1.9em; /* Needed so that sticky back white covers all */
     display: flex;
     justify-content: space-between;
-    
 }
 
 .header {
     display: flex; 
     flex-direction: column;
     align-items: flex-start;
-    background-color: red;
     margin-left: 2em;
     margin-top: 1.5em;
 }
 
 .pageContent {
-    margin-top: 8em;
-    /* flex: 1; For sticky footer to work */
+    margin-top: 11em;
 }
 
 .text {
     margin: 0 2em;
-    display: flex;
-    flex-direction: column;   
+    /* display: flex;
+    flex-direction: column;    */
     color: gray;
 }
 
-.transition {
+.transitionIntro {
+    display: flex;
+    flex-direction: column;
     background-color: rgba(255, 217, 0, 0.959);
     padding: 1em;
     text-align: center;
-    margin-bottom: 8em;
+    margin-bottom: 5em;
+    margin-top: 2em;
 }
 
 footer {
@@ -251,39 +318,65 @@ footer {
         justify-content: space-between;
     }
 
-    .navBar {
-        flex-direction: column;
+    .navBar:hover .navList {
+        flex-direction: row;
+        width: 100px;
+        height: auto;
+        padding: 5px 25px;
     }
 
-    .text {
-        flex-direction: row;
-        color: beige;
+    .navList a {
+        padding-left: 5px;
+    }
+
+    .pageContent {
+        margin-top: 8.5em;        
     }
 
     .column {
-        padding: 1.2em;
+        color: red;
+    }
+
+    p {
+        text-align: left;
+    }
+    
+    .images {
+        float: left;
+        margin-right: 30px;
+        margin-bottom: 15px;
     }
 
     .dots {
         border-top: none;
-
     }
 
-    .images {
+    .figures {
         display: inline-block;
     }
 
     .dots h2 {
         border-top: solid darkgray 2px;
     }
-
-    
     
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 800px) {
     .text {
+        /* flex-wrap:  */
+        justify-content: center;
+    }
+
+    .dots {
+        border-top: display;
+    }
+    .column {
         color: rgb(98, 146, 161);
+    }
+
+    .subtext {
+        display: flex;
+        flex-direction: row; 
     }
     
 }

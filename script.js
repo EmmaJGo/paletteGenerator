@@ -1,127 +1,132 @@
-// --------------------------------------->>
-// Getting 3 values from user input in form:
-// GridNumber, GridResolution, Color
-// --------------------------------------->>
 
-// const submitBtn = document.getElementById('submit');
+document.addEventListener('DOMContentLoaded', () => {
+    const subheader = document.getElementById('subheading');
+    const form = document.getElementById('inputInfo');
+    const gNumberS = document.querySelectorAll('input[name="gNumber"]');
+    const gResolutionS = document.querySelectorAll('input[name="gResolution"]');
+    const colorS = document.querySelectorAll('input[name="color"]');
+    const submit = document.getElementById('submit');
+    const palette = document.getElementById('palette');
+    const grid = document.getElementById('grid');
 
-// submitBtn.onclick = () => {
-//     const gridNumberOptions = document.querySelectorAll('.gridNumber');
-//     let selectedGridNumber;
-//     for(let x of gridNumberOptions) {
-//         if (x.selected) {
-//             selectedGridNumber = x.value;
-//             console.log (selectedGridNumber);
-//         }
-//     }
-
-//     const gridResolutionOptions = document.querySelectorAll('.gridResolution');
-//     let selectedGridResolution;
-//     for(let y of gridResolutionOptions) {
-//         if (y.selected) {
-//             selectedGridResolution = y.value;
-//             console.log (selectedGridResolution);
-//         }
-//     }
-
-//     const colorOptions = document.querySelectorAll('input[name="color"]');
-//     let selectedColor;
-//     for(let z of colorOptions) {
-//         if (z.checked) {
-//             selectedColor = z.value;
-//             console.log (selectedColor);
-//         }
-//     }
-    
-//     // Validates that three fields of form are filled
-//     if (selectedGridNumber == null || selectedGridResolution == null || selectedColor == null) 
-//         {
-//         alert('You have to make selections for the three fields! Try again! ');
-//         }
-//         else {
-//             const buildItBtn = document.getElementById('buildIt');
-//             buildItBtn.style.display = 'inline';
-//             submitBtn.style.backgroundColor = 'lightgray';
-//         }
-    
-// }
-
-// ------------------->>
-// Grid Generation
-// ------------------->>
-
-// IN PROGRESS
-
-const gridNumber = 5;
-const gridResolution = 'low';
-const grid = document.getElementById('grid');
-let count = 0;
-
-for ( let i = 0; i < gridNumber; i ++) {
-    for ( let j = 0; j < gridNumber; j ++) {
-        grid.innerHTML+= `<div class='dot' id='dot${count}'>${count}</div>`;
-        count ++;
+    /**
+     * Displays an element on page
+     * @param {DOM element} element 
+     */
+    function displayElement(element) {
+        element.style.display = 'inline';
     }
-    grid.innerHTML += '<br>';
-}
 
-const gridElements = gridNumber * gridNumber;
-const dots = grid.children;
-
-
-// Converts an array of three numeric values to rgb notation for color
-function rgbGenerator(array) {
-    let rgb = 'rgb(';
-    for ( let i = 0; i < array.length; i ++ ) {
-        rgb += array[i] 
-        if ( i !== array.length - 1 ) {
-            rgb += ',';
+    /**
+     * Hides an element from page
+     * @param {DOM element} element 
+     */
+    function hideElement(element) {
+        element.style.display = 'none';
+    }
+    
+    /**
+     * Returns user's radio button value selection
+     * @param {array} listOptions 
+     */
+    function getValue (listOptions) {
+        let result;
+        for(let x of listOptions) {
+            if (x.checked) {
+                result = x.value;
+                return(result);
+            }
         }
     }
-    rgb += ')';
-    return rgb;
-}
 
-// Generates array of rgb from array values for color
-function rgbArray(arrayOfArrays, rgbArray) {
-    for ( let i = 0; i < arrayOfArrays.length; i ++) {
-        rgbArray.push(rgbGenerator(arrayOfArrays[i]));
+    /**
+     * Validates selection in form's fields have been made
+     * Displays grid from values selected
+     * @param {object} triadResult 
+     */
+    function validateInfo(triadResult) {
+        const gNumber = triadResult.gNumber;
+        const gResolution = triadResult.gResolution;
+        const color = triadResult.color;
+        if (gNumber == null || gResolution == null || color == null) 
+        {
+        alert('You have to make selections for the three fields! Try again! ');
+        }
+        else {
+            submit.style.backgroundColor = 'lightgray';
+            subheader.textContent = 'Palette';
+            hideElement(form);
+            displayElement(palette);
+            console.log(triadResult);
+        }
+    };
+
+    /**
+     * Generates gNumber*gNumber grid of dots
+     * @param {number} gNumber 
+     */
+    function generateGrid(gNumber) {
+        let count = 0;
+        for ( let i = 0; i < gNumber; i ++) {
+            for ( let j = 0; j < gNumber; j ++) {
+                grid.innerHTML+= `<div class='dot' id='dot${count}'>${count}</div>`;
+                count ++;
+            }
+            grid.innerHTML += '<br>';
+        }
     }
-    return rgbArray;
-}
+    // const gridElements = gridNumber * gridNumber;
+    // const dots = grid.children;
 
-// Colors each dot according to rgbArray
-function colorTheDots(gridElements,dots,rgbArray) {
-    for ( let i = 0; i < gridElements; i ++) {
-        dots[i].style.backgroundColor = rgbArray[i];
-        console.log(i);
+    /**
+     * Generates rgb text from an array with 3 values
+     * @param {array} triad 
+     */
+    function rgbTextGenerator(triad) {
+        let rgb = 'rgb(';
+        for ( let i = 0; i < triad.length; i ++ ) {
+            rgb += array[i] 
+            if ( i !== array.length - 1 ) {
+                rgb += ',';
+            }
+        }
+        rgb += ')';
+        return (rgb);
     }
-}
 
-// https://www.color-hex.com/color-palette/93914
-let black = {
-    gn3: [[5,5,5], [41,41,41],[100,100,100]],
-    gn5: [[41,41,41], [54,54,54], [189,189,189], [221,221,221], [238,238,238]],
-    gn10: [],
-    gn15: [],
-    gn20: [],
-    gn30: []
-};
+    /**
+     * Gets single rgb triad array from the array collection
+     * @param {array of arrays} arrayOfRgbs 
+     * @param {array} singleRgb 
+     */
+    function singlergbArray(arrayOfRgbs, singleRgb) {
+        for ( let i = 0; i < arrayOfRgbs.length; i ++) {
+            singleRgb.push(rgbTextGenerator(arrayOfRgbs[i]));
+        }
+        return (singleRgb);
+    }
+    // function newPage (result) {
+    //     const span = document.createElement('span');
+    //     span.textContent = 'Hello, there'; 
+    //     grid.appendChild(span);
+    //     console.log(result);
+    // };
 
-// https://www.color-hex.com/color-palette/84893
-// let brown = {}
-
-// https://www.color-hex.com/color-palette/94404
-// let red = {}
-
-// https://www.color-hex.com/color-palette/94557
-// let blue = {}
-
-// https://www.color-hex.com/color-palette/93707
-// let yellow = {}
-
-let blackrgb5 = [];
-colorTheDots(gridElements,dots,rgbArray(black.gn5,blackrgb5));
-console.log (blackrgb5);
-
+    submit.addEventListener('click', () => {
+        // Initializes variables with user's info selected from form
+        const triadResult = {};
+        const gNumber = getValue(gNumberS);
+        const gResolution = getValue(gResolutionS);
+        const color = getValue(colorS);
+        triadResult.gNumber = gNumber;
+        triadResult.gResolution = gResolution;
+        triadResult.color = color;
+        
+        // Validates that three fields of form are filled
+        validateInfo(triadResult);   
+        //Generates grid  
+        generateGrid(gNumber);
+        
+    });
+});
 

@@ -19,63 +19,60 @@
                 <div class="navList">
                     <li><a href="intro.html">Home</a></li>
                     <li><a href="data.html">Data</a></li>
-                    <li><a href="palette.html">Palette</a></li>
                 </div>
             </ul>
         </nav>
     </header>
 
     <main class="pageContent">
-        <form action="#" method="post">
+        <form action="#" method="post" id="inputInfo">
     
             <!-- Palette Number Composition Selection -->
-            <label for =“grid-number”>Select the number of elements in the palette</label>
-            <select id=“grid-number” name=“grid-number”>
-                <optgroup label="Number of Elements">
-                    <option value="" selected> --- Select --- </option>
-                    <option class="gridNumber" value=“3”>3</option>
-                    <option class="gridNumber" value=“5”>5</option>
-                    <option class="gridNumber" value=“10”>10</option> 
-                    <option class="gridNumber" value=“15”>15</option>
-                    <option class="gridNumber" value=“20”>20</option>
-                    <option class="gridNumber" value=“30”>30</option>
-                </optgroup>
-            </select>
-        
+            <label for =“gridNumber”>Select the number of elements in the palette</label>
+            <div class="gridNumber">
+                <input type="radio" id="r3" name="gNumber" value="3"><label for="3">3</label>
+                <input type="radio" id="r5" name="gNumber" value="5"><label for="5">5</label>
+                <input type="radio" id="r10" name="gNumber" value="10"><label for="10">10</label>
+            </div>
+
             <!-- Palette Resolution Selection -->
             <label>Select the resolution for the palette</label>
-            <select id=“grid-resolution" name=“grid-resolution”>
-                <optgroup label="Resolution of Palette">
-                    <option value="" selected> --- Select --- </option>
-                    <option class="gridResolution" value=“low”>Low</option>
-                    <option class="gridResolution" value=“medium”>Medium</option>
-                    <option class="gridResolution" value=“high”>High</option>
-                </optgroup>
-            </select>
+            <div class="gridResolution">
+                <input type="radio" id="low" name="gResolution" value="low"><label for="low">Low</label>
+                <input type="radio" id="medium" name="gResolution" value="medium"><label for="medium">Medium</label>
+                <input type="radio" id="high" name="gResolution" value="high"><label for="high">High</label>
+            </div>
         
             <!-- Palette Color Selection -->
             <label>Select the color for the palette</label>
-            <div class="radio-group">
-                <input type="radio" id="black" name="color" value="black"><label class="color-flag" for="black">Black</label>
-                <input type="radio" id="brown" name="color" value="brown"><label class="color-flag" for="brown">Brown</label>
-                <input type="radio" id="blue" name="color" value="blue"><label class="color-flag" for="blue">Blue</label>
-                <input type="radio" id="red" name="color" value="red"><label class="color-flag" for="red">Red</label>
-                <input type="radio" id="yellow" name="color" value="yellow"><label class="color-flag" for="yellow">Yellow</label><br>
+            <div class="radioGroup">
+                <input type="radio" id="black" name="color" value="black"><label class="colorFlag" for="black">Black</label>
+                <input type="radio" id="brown" name="color" value="brown"><label class="colorFlag" for="brown">Brown</label>
+                <input type="radio" id="blue" name="color" value="blue"><label class="colorFlag" for="blue">Blue</label>
+                <input type="radio" id="red" name="color" value="red"><label class="colorFlag" for="red">Red</label>
+                <input type="radio" id="yellow" name="color" value="yellow"><label class="colorFlag" for="yellow">Yellow</label><br>
             </div>
 
             <aside class="transitionData">
                 <button class="btn" id="submit" type="button"><span>Submit</span><br>your choices!</button>
-                <a class="btn" id="buildIt" href="palette.html"><span>Press</span><br>to Build!</a>
-            </aside>
-
+            </aside>            
        </form>
+       <div id="palette">
+            <!-- <div class="buttonNav">
+                <button class="button" id="btn3">3-Element Palette</button>
+                <button class="button" id="btn5">5-Element Palette</button>
+                <button class="button" id="btn10">10-Element Palette</button>
+            </div> -->
+            <div id="grid">  
+                
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
         <span>For info, contact: <a href=“mailto:thisEmail@gmail.com”>thisEmail@gmail.com</a></span>
     </footer>    
-    
-    
+    <script src='../script.js'></script>
 </body>
-<script src='../script.js'></script>
+
 </html>

@@ -139,12 +139,24 @@ input[type="radio"] + label {
 
 }
 
-.radio-group {
+.radioGroup {
     display: flex;
     justify-content: space-around;
 }
 
-.color-flag {
+input[name="gNumber"] + label {
+    background-color: darkgrey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input[name="gResolution"] + label {
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.colorFlag {
     padding: 5px;
     border-radius: 5px;
     color: white;
@@ -196,7 +208,7 @@ input[type="radio"]:checked + label {
     border: 5px solid whitesmoke;
 }
 
-select {
+/* select {
     background-color: lightgray;
     color: white;
     border-radius: 5px;
@@ -209,7 +221,7 @@ select:hover {
 
 option {
     background: red;
-}
+} */
 
 .btn {
     background: red;
@@ -234,11 +246,6 @@ option {
 .btn:hover {
     cursor: pointer;
 }
-
-#buildIt {
-    display: none;
-}
-
 
 /* ------------------------>> PALETTE.HTML*/
 
@@ -285,8 +292,6 @@ option {
 
 .text {
     margin: 0 2em;
-    /* display: flex;
-    flex-direction: column;    */
     color: gray;
 }
 
@@ -358,25 +363,61 @@ footer {
     .dots h2 {
         border-top: solid darkgray 2px;
     }
-    
 }
 
 @media screen and (min-width: 800px) {
-    .text {
-        /* flex-wrap:  */
-        justify-content: center;
+    .dots h2,
+    .lines h2,
+    .figures h2 {
+        border-top: none;
     }
 
-    .dots {
-        border-top: display;
+    .navBar:hover .navList {
+        width: 450px;
     }
+
+    .navList a {
+        padding: 5px 30px;
+        justify-content: flex-end;
+    }
+
+    .images {
+        width: 200px;
+        height: 200px;
+    }
+
     .column {
-        color: rgb(98, 146, 161);
+        color: darkgray;
     }
 
-    .subtext {
+    .text {
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
     }
-    
+
+    .dots,
+    .lines,
+    .figures {
+        padding: 15px;
+    }
+
+    .lines {
+        flex-grow: 5;
+    }
+
+    h2 {
+        text-align: left;
+    }
+
+    .transitionIntro h2 {
+        text-align: center;
+    }
+
+}
+
+@media screen and (min-width: 1100px) {
+    .pageContent {
+        display: flex;
+        flex-direction: row;
+    }
 }

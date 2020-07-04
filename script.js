@@ -9,50 +9,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const palette = document.getElementById('palette');
     const grid = document.getElementById('grid');
 
-    const basicRgbObjects = {
+    // Basic indexed RGB values for each color for the 5x5 grid (g5)
+    let basicRgbObjects = {
         black: {
+            g3: {}, g10: {},
             g5: {
-                    0:  [[41,41,41]],
-                    5:  [[54,54,54]],
-                    10: [[189,189,189]],
-                    15: [[221,221,221]],
-                    20: [[238,238,238]]
+                    i0:  [[41,41,41]],
+                    i5:  [[54,54,54]],
+                    i10: [[189,189,189]],
+                    i15: [[221,221,221]],
+                    i20: [[238,238,238]]
                 }
         },
         brown: {
+            g3: {}, g10 : {},
             g5: {
-                0:  [[84,50,48]], 
-                5:  [[103,66,53]],
-                10: [[124,84,56]],
-                15: [[148,103,58]],
-                20: [[169,125,57]]
+                i0:  [[84,50,48]], 
+                i5:  [[103,66,53]],
+                i10: [[124,84,56]],
+                i15: [[148,103,58]],
+                i20: [[169,125,57]]
             }
         },
         blue: {
+            g3: {}, g10: {},
             g5: {
-                0:  [[0,85,255]],
-                5:  [[0,146,255]],
-                10: [[148,197,255]],
-                15: [[26,50,175]],
-                20: [[6,16,39]]
+                i0:  [[0,85,255]],
+                i5:  [[0,146,255]],
+                i10: [[148,197,255]],
+                i15: [[26,50,175]],
+                i20: [[6,16,39]]
             }
         },
         red: {
+            g3: {}, g10:{}, 
             g5: {
-                0:  [[255,17,17]],
-                5:  [[255,65,65]],
-                10: [[255,98,98]],
-                15: [[255,128,128]],
-                20: [[255,174,174]]
+                i0:  [[255,17,17]],
+                i5:  [[255,65,65]],
+                i10: [[255,98,98]],
+                i15: [[255,128,128]],
+                i20: [[255,174,174]]
             }
         },
         yellow: {
+            g3: {}, g10: {},
             g5: {
-                0:  [[255,223,87]],
-                5:  [[255,244,140]],
-                10: [[254,255,170]], 
-                15: [[255,255,197]], 
-                20: [[255,255,231]]
+                i0:  [[255,223,87]],
+                i5:  [[255,244,140]],
+                i10: [[254,255,170]], 
+                i15: [[255,255,197]], 
+                i20: [[255,255,231]]
             }
         }
     }
@@ -154,18 +160,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return (rgbTextArray);
     }
+
+    /**
+     * Determines spacing based on grid resolution
+     * @param {number} gResolution 
+     */
+    function determineSpacing(gResolution) {
+        let spacing = 3;
+        if ( gResolution == 'low') {
+            spacing = 1;
+        } else if ( gResolution == 'medium') {
+            spacing = 2;
+        }
+        return (spacing);
+    }
     
+    /**
+     * Generages initial values for g3 object for a given color
+     * @param {object} colorObject 
+     */
+    function generatesBaseG3(colorObject) {
+        colorObject.g3.i0 = colorObject.g5.i0;
+        colorObject.g3.i3 = colorObject.g5.i10;
+        colorObject.g3.i6 = colorObject.g5.i20;
+        return (colorObject.g3);
+    }
+    
+    /**
+     * Generates initial values for g10 object for a given color
+     * @param {object} colorObject 
+     */
+    function generatesBaseG10(colorObject) {
+        colorObject.g10.i0 = colorObject.g5.i0;
+        colorObject.g10.i20 = colorObject.g5.i5;
+        colorObject.g10.i40 = colorObject.g5.i10;
+        colorObject.g10.i60 = colorObject.g5.i15;
+        colorObject.g10.i80 = colorObject.g5.i20;
+        return (colorObject.g10);
+    }
+
+    // NEW, WORKING ON
+    // function determineChangeIndexes(color) {
+    //     if ( color == 'black' ) {
+
+    //     }
+    // }
+    
+    // console.log(generatesBaseG3([basicRgbObjects.black]));
     // ----> To check. To work with all 3, 5, 10, and low, medium, high
-    function alterSingleRGB(spacing,singleRgbArray) {
+    // basicRgbObjects.black.g5.0[i]
+    // NEW, WORKING ON
+    function alteredRgbArrayGen(gResolution,singleRgbArray) {
         let newN = 0;
         let newRgbArray = [];
+        let spacing = 3;
+        
         for ( let i = 0; i < 3; i ++) {
-            newN = singleRGBarray[i] + spacing;
-            newRGBarray.push(newN);
+            newN = singleRgbArray[i] + spacing;
+            newRgbArray.push(newN);
             newN = 0;
         }
-        return (newRGBarray);
+        return (newRgbArray);
     }
+
+    // console.log(basicRgbObjects.black.g5.i0[0]);
+    // const newRgb = alteredRgbArrayGen(1,basicRgbObjects.black.g5.i0[0]);
+    // console.log (newRgb);
     
     submit.addEventListener('click', () => {
         // Initializes variables with user's info selected from form

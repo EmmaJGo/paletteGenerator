@@ -9,6 +9,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const palette = document.getElementById('palette');
     const grid = document.getElementById('grid');
 
+    const basicRgbObjects = {
+        black: {
+            g5: {
+                    0:  [[41,41,41]],
+                    5:  [[54,54,54]],
+                    10: [[189,189,189]],
+                    15: [[221,221,221]],
+                    20: [[238,238,238]]
+                }
+        },
+        brown: {
+            g5: {
+                0:  [[84,50,48]], 
+                5:  [[103,66,53]],
+                10: [[124,84,56]],
+                15: [[148,103,58]],
+                20: [[169,125,57]]
+            }
+        },
+        blue: {
+            g5: {
+                0:  [[0,85,255]],
+                5:  [[0,146,255]],
+                10: [[148,197,255]],
+                15: [[26,50,175]],
+                20: [[6,16,39]]
+            }
+        },
+        red: {
+            g5: {
+                0:  [[255,17,17]],
+                5:  [[255,65,65]],
+                10: [[255,98,98]],
+                15: [[255,128,128]],
+                20: [[255,174,174]]
+            }
+        },
+        yellow: {
+            g5: {
+                0:  [[255,223,87]],
+                5:  [[255,244,140]],
+                10: [[254,255,170]], 
+                15: [[255,255,197]], 
+                20: [[255,255,231]]
+            }
+        }
+    }
+
     /**
      * Displays an element on page
      * @param {DOM element} element 
@@ -75,43 +123,50 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.innerHTML += '<br>';
         }
     }
-    // const gridElements = gridNumber * gridNumber;
-    // const dots = grid.children;
 
     /**
      * Generates rgb text from an array with 3 values
-     * @param {array} triad 
+     * @param {array} singleArray 
      */
-    function rgbTextGenerator(triad) {
+    function rgbTextGenerator(singleArray) {
         let rgb = 'rgb(';
-        for ( let i = 0; i < triad.length; i ++ ) {
-            rgb += array[i] 
-            if ( i !== array.length - 1 ) {
+        for ( let i = 0; i < singleArray.length; i ++ ) {
+            rgb += singleArray[i] 
+            if ( i !== singleArray.length - 1 ) {
                 rgb += ',';
             }
         }
         rgb += ')';
         return (rgb);
     }
-
+    
     /**
-     * Gets single rgb triad array from the array collection
-     * @param {array of arrays} arrayOfRgbs 
-     * @param {array} singleRgb 
+     * Generates rgb text for a whole object with array of arrays (i.e. g5)
+     *  of triads of values
+     * @param {object of object of arrays} objectOfRgbs 
      */
-    function singlergbArray(arrayOfRgbs, singleRgb) {
-        for ( let i = 0; i < arrayOfRgbs.length; i ++) {
-            singleRgb.push(rgbTextGenerator(arrayOfRgbs[i]));
+    function rgbTextArrayGenerator(objectOfRgbs) {
+        const rgbTextArray = [];
+        for ( let key in objectOfRgbs ) {
+            for ( let i = 0; i < objectOfRgbs[key].length; i ++) {
+                rgbTextArray.push(rgbTextGenerator(objectOfRgbs[key][i]));
+            }
         }
-        return (singleRgb);
+        return (rgbTextArray);
     }
-    // function newPage (result) {
-    //     const span = document.createElement('span');
-    //     span.textContent = 'Hello, there'; 
-    //     grid.appendChild(span);
-    //     console.log(result);
-    // };
-
+    
+    // ----> To check. To work with all 3, 5, 10, and low, medium, high
+    function alterSingleRGB(spacing,singleRgbArray) {
+        let newN = 0;
+        let newRgbArray = [];
+        for ( let i = 0; i < 3; i ++) {
+            newN = singleRGBarray[i] + spacing;
+            newRGBarray.push(newN);
+            newN = 0;
+        }
+        return (newRGBarray);
+    }
+    
     submit.addEventListener('click', () => {
         // Initializes variables with user's info selected from form
         const triadResult = {};
@@ -126,6 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
         validateInfo(triadResult);   
         //Generates grid  
         generateGrid(gNumber);
+
+        //Generates rgb for whole OBJECT of arrays
+        // rgbTextArrayGenerator(basicRgbObjects.blue.g5)
         
     });
 });

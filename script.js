@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Generates full basic rgb for 3x3 grid
+     * Generates full basic rgb for 3x3, 5x5, or 10x10 black grid
      * @param {object} colorObject 
      * @param {number} gNumber 
      */
@@ -248,7 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
         for (  let j = 0; j < limit_1; j ++) {
             for ( let i = 1; i < limit_2; i ++) { 
                 gArray[j][i] = alteredBlackRgbArrayGen(gArray[j][i-1]);
-                console.log (`${j}, ${i}, ${gArray[j][i]}`);
             }
         } 
 

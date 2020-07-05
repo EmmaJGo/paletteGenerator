@@ -15,10 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
             g3: {}, g10: {},
             g5: {
                     i0:  [[41,41,41]],
-                    i5:  [[54,54,54]],
+                    // i5:  [[54,54,54]], ORIGINAL
+                    i5:  [[64,64,64]],
                     i10: [[189,189,189]],
-                    i15: [[221,221,221]],
-                    i20: [[238,238,238]]
+                    // i15: [[221,221,221]], ORIGINAL
+                    i15: [[214,214,214]],
+                    // i20: [[238,238,238]]  ORIGINAL
+                    i20: [[235,235,235]]
                 }
         },
         brown: {
@@ -199,21 +202,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return (colorObject.g10);
     }
 
-    // NEW, WORKING ON
-    // function determineChangeIndexes(color) {
-    //     if ( color == 'black' ) {
-
-    //     }
-    // }
-    
-    // console.log(generatesBaseG3([basicRgbObjects.black]));
-    // ----> To check. To work with all 3, 5, 10, and low, medium, high
-    // basicRgbObjects.black.g5.0[i]
-    // NEW, WORKING ON
-    function alteredRgbArrayGen(gResolution,singleRgbArray) {
+     /**
+     * Generates new array for black by adding 1 to each in triad
+     * @param {array} singleRgbArray 
+     */
+    function alteredBlackRgbArrayGen(singleRgbArray) {
         let newN = 0;
         let newRgbArray = [];
-        let spacing = 3;
+        let spacing = 1;
         
         for ( let i = 0; i < 3; i ++) {
             newN = singleRgbArray[i] + spacing;
@@ -223,10 +219,48 @@ document.addEventListener('DOMContentLoaded', () => {
         return (newRgbArray);
     }
 
-    // console.log(basicRgbObjects.black.g5.i0[0]);
-    // const newRgb = alteredRgbArrayGen(1,basicRgbObjects.black.g5.i0[0]);
-    // console.log (newRgb);
-    
+    // NEW WORKING ON
+    function specificAlteredRgb(singleRbbArray,indexTriad,changesTriad) {
+
+    }
+
+    /**
+     * Generates full basic rgb for 3x3 grid
+     * @param {object} colorObject 
+     * @param {number} gNumber 
+     */
+    function generatesFullBlackG (colorObject,gNumber) {
+        let gArray;
+        let limit_1 = gNumber;
+        if ( gNumber == 3) {
+            generatesBaseG3(colorObject);
+            gArray = [colorObject.g3.i0, colorObject.g3.i3, colorObject.g3.i6];
+        } else if ( gNumber == 10 ) {
+            limit_1 = gNumber / 2;
+            limit_2 = gNumber * 2;
+            generatesBaseG10(colorObject);
+            gArray = [colorObject.g10.i0, colorObject.g10.i20, colorObject.g10.i40, colorObject.g10.i60, colorObject.g10.i80];
+        } else {
+            gNumber == 5;
+            gArray = [colorObject.g5.i0, colorObject.g5.i5, colorObject.g5.i10, colorObject.g5.i15, colorObject.g5.i20];
+        }
+        
+        for (  let j = 0; j < limit_1; j ++) {
+            for ( let i = 1; i < limit_2; i ++) { 
+                gArray[j][i] = alteredBlackRgbArrayGen(gArray[j][i-1]);
+                console.log (`${j}, ${i}, ${gArray[j][i]}`);
+            }
+        } 
+
+        if ( gNumber == 3) {
+            return (colorObject.g3);
+        } else if ( gNumber == 10 ) {
+            return (colorObject.g10);
+        } else {
+            return (colorObject.g5);
+        }
+    }
+
     submit.addEventListener('click', () => {
         // Initializes variables with user's info selected from form
         const triadResult = {};
@@ -244,6 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Generates rgb for whole OBJECT of arrays
         // rgbTextArrayGenerator(basicRgbObjects.blue.g5)
+
+
+        // BLACK READY
+        // console.log(generatesFullBlackG(basicRgbObjects.black,gNumber));
         
     });
 });

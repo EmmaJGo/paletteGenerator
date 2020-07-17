@@ -126,6 +126,14 @@ form {
     box-shadow: 0 20px 20px rgba(0,0,50, .15);
 }
 
+#tryAgain,
+#showRgb,
+#hideRgb,
+#show1,
+#show2 {
+    display: none;
+}
+
 label {
     display: block;
     text-align: left;
@@ -249,16 +257,24 @@ option {
 
 /* ------------------------>> PALETTE.HTML*/
 
-#grid {
-    text-align: center;
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center; */
+#gridSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#rgbSection {
+    display: flex;
+    flex-direction: row;
     
 }
 
+#grid {
+    text-align: center;
+}
+
 .dot {
-    width: 300px;
+    width: 30px;
     height: 30px;
     border-radius: 50%;
     display: inline-block;

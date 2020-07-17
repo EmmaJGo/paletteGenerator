@@ -6,31 +6,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const gResolutionS = document.querySelectorAll('input[name="gResolution"]');
     const colorS = document.querySelectorAll('input[name="color"]');
     const submit = document.getElementById('submit');
+    const tryAgainB = document.getElementById('tryAgain');
+    const showRgbB = document.getElementById('showRgb');
+    const hideRgbB = document.getElementById('hideRgb');
+    const show2B = document.getElementById('show2');
+    const show3B = document.getElementById('show3');
     const palette = document.getElementById('palette');
     const grid = document.getElementById('grid');
-    const dots = document.getElementsByClassName('dot');
+    const grid2 = document.getElementById('grid2');
+    const grid3 = document.getElementById('grid3');
+    const rgbSection = document.getElementById('rgbSection');
+    const rgbValues = document.getElementById('rgbValues');
+    const rgbValues2 = document.getElementById('rgbValues2');
+    const rgbValues3 = document.getElementById('rgbValues3');
 
     // Basic indexed RGB values for each color for the 5x5 grid (g5)
     let basicRgbObjects = {
         black: {
             g3: {}, g10: {},
             g5: {
-                    i0: [[21,21,21]],
-                    i5: [[100,100,100]],
-                    i10: [[155,155,155]],
-                    i15: [[189,189,189]],
-                    i20: [[214,214,214]]
+                    i0: [[0,0,0]],
+                    i5: [[50,50,50]],
+                    i10: [[100,100,100]],
+                    i15: [[150,150,150]],
+                    i20: [[200,200,200]]
                 }
         },
         brown: {
             g3: {}, g10 : {},
             g5: {
-                // i0:  [[82,50,48]], 
-                // i5:  [[103,66,53]],
-                // i10: [[124,84,56]],
-                // i15: [[148,103,58]],
-                // i20: [[169,125,57]]
-
                 i0:  [[82,50,48]], 
                 i5:  [[113,66,53]],
                 i10: [[144,84,56]],
@@ -128,20 +132,37 @@ document.addEventListener('DOMContentLoaded', () => {
             subheader.textContent = 'Palette';
             hideElement(form);
             displayElement(palette);
-            console.log(triadResult);
+            displayElement(tryAgainB);
+            displayElement(showRgbB);
+            displayElement(show2B);
+            displayElement(show3B);
         }
     };
+
+    /**
+     * Returns array with gResolution values not selected by user
+     * @param {number} gResolution 
+     */
+    function otherResolutions(gResolution) {
+        const allResolutions = ['low', 'medium', 'high'];
+        for ( let i = 0; i < allResolutions.length; i ++) {
+            if (allResolutions[i] == gResolution ) {
+                allResolutions.splice(i,1);
+            }
+        }
+        return(allResolutions);
+    }
 
     /**
      * Generates gNumber*gNumber grid of dots
      * @param {number} gNumber 
      */
-    function generateGrid(gNumber) {
+    function generateGrid(gNumber,grid) {
         for ( let i = 0; i < gNumber; i ++) {
             for ( let j = 0; j < gNumber; j ++) {
                 grid.innerHTML+= `<div class='dot'></div>`;
             }
-            grid.innerHTML += '<br>';
+            // grid.innerHTML += '<br>';
         }
     }
 
@@ -160,23 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rgb += ')';
         return (rgb);
     }
-    
-    //NOT SURE IF NEEDED FOR OBJECTOFRGBS
-    // /**
-    //  * Generates rgb text for a whole object with array of arrays (i.e. g5)
-    //  *  of triads of values
-    //  * @param {object of object of arrays} objectOfRgbs 
-    //  */
-    // function rgbTextArrayGenerator(objectOfRgbs) {
-    //     const rgbTextArray = [];
-    //     for ( let key in objectOfRgbs ) {
-    //         for ( let i = 0; i < objectOfRgbs[key].length; i ++) {
-    //             rgbTextArray.push(rgbTextGenerator(objectOfRgbs[key][i]));
-    //         }
-    //     }
-    //     return (rgbTextArray);
-    // }
-
     
     /**
      * Generages initial values for g3 object for a given color
@@ -202,32 +206,47 @@ document.addEventListener('DOMContentLoaded', () => {
         return (basicRgbObjects[color].g10);
     }
 
-    // WORKING ON IT --- > GRESOLUTION
     /**
      * Determines spacing based on grid resolution
      * @param {number} gResolution 
      */
     function determineSpacing(gResolution) {
-        let spacing = 3;
+        let spacing = 5;
         if ( gResolution == 'low') {
             spacing = 1;
         } else if ( gResolution == 'medium') {
-            spacing = 2;
+            spacing = 3;
         }
         return (spacing);
     }
 
-    // WORKING ON IT --- > GRESOLUTION
     /**
-     * Specifically alters individuals rgb triads according to color
+     * Determines triad resolution for resolution and color values
+     * @param {number} gResolution 
+     * @param {string} color 
+     */
+    function indexedResolution(gResolution,color) {
+        let indexed = indexedChanges[color];
+        let spacing = determineSpacing(gResolution);
+        let spacedIndexed = [];
+        for ( let i = 0; i < indexed.length; i ++) {
+            spacedIndexed[i] = indexed[i] * spacing;
+        }
+        return (spacedIndexed);
+    }
+
+    /**
+     * Specifically alters individuals rgb triads according to color and resolution
      * @param {array} singleRgbArray 
      * @param {array} indexedChanges 
+     * @param {number} gResolution
      */
-    function specificAlteredRgb(singleRgbArray,color) {
+    function specificAlteredRgb(singleRgbArray,color,gResolution) {
         let newN = 0;
         let newRgbArray = [];
+        let spacedIndexed = indexedResolution(gResolution,color)
         for ( let i = 0; i < 3; i ++) {
-            newN = singleRgbArray[i] + indexedChanges[color][i];
+            newN = singleRgbArray[i] + spacedIndexed[i];
             newRgbArray.push(newN);
             newN = 0;
         }
@@ -239,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {string} color 
      * @param {number} gNumber 
      */
-    function generatesFullColorG(color,gNumber) {
+    function generatesFullColorG(color,gNumber,gResolution) {
         let gArray;
         let limit_1 = gNumber;
         let limit_2 = gNumber;
@@ -258,26 +277,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
         for (  let j = 0; j < limit_1; j ++) {
             for ( let i = 1; i < limit_2; i ++) { 
-                gArray[j][i] = specificAlteredRgb(gArray[j][i-1],color);
+                gArray[j][i] = specificAlteredRgb(gArray[j][i-1],color,gResolution);
             }
         } 
         return(gArray);
-        // if ( gNumber == 3) {
-        //     return(gArray);
-        //     // return (basicRgbObjects[color].g3);
-        // } else if ( gNumber == 10 ) {
-        //     return (basicRgbObjects[color].g10);
-        // } else {
-        //     return (basicRgbObjects[color].g5);
-        // }
     }
 
     /**
      * Gives rgb value to each circle in grid from values in array
      * @param {number} gNumber 
      * @param {array} colorArray 
+     * @param {DOM element} grid
      */
-    function colorTheDots(gNumber,colorArray) {
+    function colorTheDots(gNumber,colorArray,grid) {
         if ( gNumber == 10 ) {
             limit1 = gNumber / 2;
             limit2 = gNumber * 2;
@@ -286,14 +298,28 @@ document.addEventListener('DOMContentLoaded', () => {
             limit2 = gNumber;
         }
         let count = 0;
+        let rgbValues = [];
+        const gridElement = grid.querySelectorAll('div');
         for ( let i = 0; i < limit1; i ++) {
             for (let j = 0; j < limit2; j ++) {
                 let color = rgbTextGenerator(colorArray[i][j]);
-                dots[count].style.backgroundColor = color;
-                dots[count].textContent = color;
+                gridElement[count].style.backgroundColor = color;
+                // gridElement[count].textContent = color;
+                rgbValues.push(color);
                 count ++;
             }   
         }
+        return(rgbValues);
+    }
+
+    /**
+     * Displays rgbValues on DOM
+     * @param {array} rgbValues 
+     */
+    function showRgbValues(rgbValues,rgbSection) {
+        for ( let i = 0; i < rgbValues.length; i ++) {
+            rgbSection.innerHTML+= `<div class='rgbValue'>${rgbValues[i]}</div>`;
+            }
     }
     
     submit.addEventListener('click', () => {
@@ -308,14 +334,39 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Validates that three fields of form are filled
         validateInfo(triadResult);   
-        //Generates grid of circles
-        generateGrid(gNumber);
-        //Generates color values for given grid
-        const colorArray = generatesFullColorG(color,gNumber);
-        console.log(colorArray);
-        //Colors the circles in grid
-        colorTheDots(gNumber,colorArray);
+        generateGrid(gNumber,grid);
+        generateGrid(gNumber,grid2);
+        generateGrid(gNumber,grid3);
+        const colorArray = generatesFullColorG(color,gNumber,gResolution);
+        // colorTheDots(gNumber,colorArray,grid);
+        const rgbVal = colorTheDots(gNumber,colorArray,grid);
+        const otherRes = otherResolutions(gResolution);
+        const colorArray2 = generatesFullColorG(color,gNumber,otherRes[0]);
+        const rgbVal2 = colorTheDots(gNumber,colorArray2,grid2);
+        show2B.textContent = `Compare to ${otherRes[0]}`;
+        const colorArray3 = generatesFullColorG(color,gNumber,otherRes[1]);
+        const rgbVal3 = colorTheDots(gNumber,colorArray3,grid3);
+        show3B.textContent = `Compare to ${otherRes[1]}`;
+
+        //Generates rgbValues for display
+        showRgbValues(rgbVal,rgbValues);
+        showRgbValues(rgbVal2,rgbValues2);
+        showRgbValues(rgbVal3,rgbValues3);
+        hideElement(rgbSection);
+    });
+
+    showRgbB.addEventListener('click', () => {
+        displayElement(rgbSection);
+        displayElement(hideRgbB);
+        hideElement(showRgbB);
+    });
+
+    hideRgbB.addEventListener('click', () => {
+        hideElement(rgbSection);
+        hideElement(hideRgbB);
+        displayElement(showRgbB);
         
     });
+
 });
 

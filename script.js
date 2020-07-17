@@ -321,7 +321,33 @@ document.addEventListener('DOMContentLoaded', () => {
             rgbSection.innerHTML+= `<div class='rgbValue'>${rgbValues[i]}</div>`;
             }
     }
-    
+
+    /**
+     * Upon click of button changes text of button and shows/displays content
+     * @param {DOM element} sectionToHide 
+     * @param {DOM element} buttonToHide 
+     * @param {DOM element} sectionToShow 
+     * @param {DOM element} buttonToShow 
+     */
+    function buttonChange(sectionToHide, buttonToHide, sectionToShow, buttonToShow) {
+        buttonToHide.addEventListener('click', () => {
+            if (sectionToHide == undefined) {
+                displayElement(sectionToShow);
+                hideElement(buttonToHide);
+                displayElement(buttonToShow);  
+            } else if (sectionToShow == undefined) {
+                hideElement(sectionToHide);  
+                hideElement(buttonToHide);
+                displayElement(buttonToShow);  
+            } else {
+                hideElement(sectionToHide);  
+                displayElement(sectionToShow);
+                hideElement(buttonToHide);
+                displayElement(buttonToShow);
+            }           
+        })
+    };
+
     submit.addEventListener('click', () => {
         // Initializes variables with user's info selected from form
         const triadResult = {};
@@ -343,30 +369,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const otherRes = otherResolutions(gResolution);
         const colorArray2 = generatesFullColorG(color,gNumber,otherRes[0]);
         const rgbVal2 = colorTheDots(gNumber,colorArray2,grid2);
-        show2B.textContent = `Compare to ${otherRes[0]}`;
+        show2B.textContent = `Compare to ${otherRes[0]} Resolution`;
         const colorArray3 = generatesFullColorG(color,gNumber,otherRes[1]);
         const rgbVal3 = colorTheDots(gNumber,colorArray3,grid3);
-        show3B.textContent = `Compare to ${otherRes[1]}`;
+        show3B.textContent = `Compare to ${otherRes[1]} Resolution`;
 
         //Generates rgbValues for display
         showRgbValues(rgbVal,rgbValues);
         showRgbValues(rgbVal2,rgbValues2);
         showRgbValues(rgbVal3,rgbValues3);
+
         hideElement(rgbSection);
+        hideElement(grid2);
+        hideElement(grid3);
+
+        buttonChange(undefined,showRgbB,rgbSection,hideRgbB);
+        buttonChange(rgbSection,hideRgbB,undefined,showRgbB);
+
     });
 
-    showRgbB.addEventListener('click', () => {
-        displayElement(rgbSection);
-        displayElement(hideRgbB);
-        hideElement(showRgbB);
+    show2B.addEventListener('click', () => {
+        displayElement(grid2);
     });
 
-    hideRgbB.addEventListener('click', () => {
-        hideElement(rgbSection);
-        hideElement(hideRgbB);
-        displayElement(showRgbB);
-        
+    show3B.addEventListener('click', () => {
+        displayElement(grid3);    
     });
+
 
 });
 

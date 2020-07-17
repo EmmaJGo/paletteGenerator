@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const showRgbB = document.getElementById('showRgb');
     const hideRgbB = document.getElementById('hideRgb');
     const show2B = document.getElementById('show2');
+    const hide2B = document.getElementById('hide2');
     const show3B = document.getElementById('show3');
+    const hide3B = document.getElementById('hide3');
     const palette = document.getElementById('palette');
     const grid = document.getElementById('grid');
     const grid2 = document.getElementById('grid2');
@@ -364,38 +366,36 @@ document.addEventListener('DOMContentLoaded', () => {
         generateGrid(gNumber,grid2);
         generateGrid(gNumber,grid3);
         const colorArray = generatesFullColorG(color,gNumber,gResolution);
-        // colorTheDots(gNumber,colorArray,grid);
         const rgbVal = colorTheDots(gNumber,colorArray,grid);
         const otherRes = otherResolutions(gResolution);
         const colorArray2 = generatesFullColorG(color,gNumber,otherRes[0]);
         const rgbVal2 = colorTheDots(gNumber,colorArray2,grid2);
         show2B.textContent = `Compare to ${otherRes[0]} Resolution`;
+        hide2B.textContent = `Hide ${otherRes[0]} resolution`;
         const colorArray3 = generatesFullColorG(color,gNumber,otherRes[1]);
         const rgbVal3 = colorTheDots(gNumber,colorArray3,grid3);
         show3B.textContent = `Compare to ${otherRes[1]} Resolution`;
+        hide3B.textContent = `Hide ${otherRes[1]}resolution`;
 
         //Generates rgbValues for display
         showRgbValues(rgbVal,rgbValues);
         showRgbValues(rgbVal2,rgbValues2);
         showRgbValues(rgbVal3,rgbValues3);
 
+        //
         hideElement(rgbSection);
         hideElement(grid2);
         hideElement(grid3);
-
+        
+        //
         buttonChange(undefined,showRgbB,rgbSection,hideRgbB);
         buttonChange(rgbSection,hideRgbB,undefined,showRgbB);
+        buttonChange(undefined,show2B,grid2,hide2B);
+        buttonChange(grid2,hide2B,undefined,show2B);
+        buttonChange(undefined,show3B,grid3,hide3B);
+        buttonChange(grid3,hide3B,undefined,show3B);
 
     });
-
-    show2B.addEventListener('click', () => {
-        displayElement(grid2);
-    });
-
-    show3B.addEventListener('click', () => {
-        displayElement(grid3);    
-    });
-
-
 });
 
+// Fragment RGB Values for each grid

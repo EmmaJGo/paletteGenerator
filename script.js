@@ -37,11 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         brown: {
             g3: {}, g10 : {},
             g5: {
-                // i0:  [[82,50,48]], 
-                // i5:  [[113,66,53]],
-                // i10: [[144,84,56]],
-                // i15: [[175,103,58]],
-                // i20: [[206,125,57]]
                 i0: [[90,50,48]],
                 i5:  [[180,50,48]], 
                 i10:  [[113,66,53]],
@@ -54,16 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
             g3: {}, g10: {},
             g5: {
                 i0: [[26,0,175]],
-                // i0: [[6,16,39]],
-                // i5: [[26,50,175]],
                 i5: [[16,0,175]],
                 i10: [[6,0,175]],
-                // i10:  [[0,85,255]],
-                // i15:  [[0,146,255]],
                 i15:[[0,0,190]],
                 i20: [[0,100,190 ]]
-                // i20: [[148,197,255]]
-                
             }
         },
         red: {
@@ -74,17 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 i10: [[230,95,95]],
                 i15: [[255,185,185]],
                 i20: [[255,95,95]]
-
-                // i0:  [[200,180,180]],
-                // i5:  [[200,90,90]],
-                // i10: [[230,90,90]],
-                // i15: [[255,180,180]],
-                // i20: [[255,90,90]]
-                // i0:  [[255,17,17]],
-                // i5:  [[255,65,65]],
-                // i10: [[255,98,98]],
-                // i15: [[255,128,128]],
-                // i20: [[255,174,174]]
             }
         },
         yellow: {
@@ -95,13 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 i10:  [[255,244,40]],
                 i15: [[254,250,40]], 
                 i20: [[255,250,140]]
-                
-
-                // i0:  [[255,223,87]],
-                // i5:  [[255,244,140]],
-                // i10: [[254,255,170]], 
-                // i15: [[255,255,197]], 
-                // i20: [[255,255,231]]
             }
         }
     }
@@ -336,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let j = 0; j < limit2; j ++) {
                 let color = rgbTextGenerator(colorArray[i][j]);
                 gridElement[count].style.backgroundColor = color;
-                gridElement[count].textContent = color+","+count;
+                // gridElement[count].textContent = color+","+count;
                 rgbValues.push(color);
                 count ++;
             }   
@@ -350,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function showRgbValues(rgbValues,rgbSection) {
         for ( let i = 0; i < rgbValues.length; i ++) {
-            rgbSection.innerHTML+= `<div class='rgbValue'>${rgbValues[i]}</div>`;
+            rgbSection.innerHTML+= `<div class='rgbValue'>${rgbValues[i]}</div>  `;
             }
     }
 
@@ -392,32 +363,42 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Validates that three fields of form are filled
         validateInfo(triadResult);   
+        
+        //Generates grids for chosen resolution and the other two
         generateGrid(gNumber,grid);
         generateGrid(gNumber,grid2);
         generateGrid(gNumber,grid3);
+        
+        // Colors the dots in 2 grids
         const colorArray = generatesFullColorG(color,gNumber,gResolution);
         const rgbVal = colorTheDots(gNumber,colorArray,grid);
         const otherRes = otherResolutions(gResolution);
         const colorArray2 = generatesFullColorG(color,gNumber,otherRes[0]);
         const rgbVal2 = colorTheDots(gNumber,colorArray2,grid2);
-        show2B.textContent = `Compare to ${otherRes[0]} Resolution`;
-        hide2B.textContent = `Hide ${otherRes[0]} resolution`;
+        
+        // Generates first set of button text according to user grid resolution's choice
+        show2B.textContent = `Show ${otherRes[0]} Resolution`;
+        hide2B.textContent = `Hide ${otherRes[0]} Resolution`;
+        
+        // Colors last grid
         const colorArray3 = generatesFullColorG(color,gNumber,otherRes[1]);
         const rgbVal3 = colorTheDots(gNumber,colorArray3,grid3);
-        show3B.textContent = `Compare to ${otherRes[1]} Resolution`;
-        hide3B.textContent = `Hide ${otherRes[1]}resolution`;
+
+        // Generates last set of button text according to user's choice
+        show3B.textContent = `Show ${otherRes[1]} Resolution`;
+        hide3B.textContent = `Hide ${otherRes[1]} Resolution`;
 
         //Generates rgbValues for display
         showRgbValues(rgbVal,rgbValues);
         showRgbValues(rgbVal2,rgbValues2);
         showRgbValues(rgbVal3,rgbValues3);
 
-        //
+        //Hides rgbValues and two extra grids from display
         hideElement(rgbSection);
         hideElement(grid2);
         hideElement(grid3);
         
-        //
+        //Selects which buttons to display/hide according to user's action
         buttonChange(undefined,showRgbB,rgbSection,hideRgbB);
         buttonChange(rgbSection,hideRgbB,undefined,showRgbB);
         buttonChange(undefined,show2B,grid2,hide2B);
@@ -427,7 +408,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 });
-
-// Fragment RGB Values for each grid
-
-// Need 6 extra for black in high

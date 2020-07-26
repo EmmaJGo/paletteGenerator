@@ -37,11 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         brown: {
             g3: {}, g10 : {},
             g5: {
-                // i0:  [[82,50,48]], 
-                // i5:  [[113,66,53]],
-                // i10: [[144,84,56]],
-                // i15: [[175,103,58]],
-                // i20: [[206,125,57]]
                 i0: [[90,50,48]],
                 i5:  [[180,50,48]], 
                 i10:  [[113,66,53]],
@@ -54,15 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
             g3: {}, g10: {},
             g5: {
                 i0: [[26,0,175]],
-                // i0: [[6,16,39]],
-                // i5: [[26,50,175]],
                 i5: [[16,0,175]],
                 i10: [[6,0,175]],
-                // i10:  [[0,85,255]],
-                // i15:  [[0,146,255]],
                 i15:[[0,0,190]],
                 i20: [[0,100,190 ]]
-                // i20: [[148,197,255]]
                 
             }
         },
@@ -74,17 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 i10: [[230,95,95]],
                 i15: [[255,185,185]],
                 i20: [[255,95,95]]
-
-                // i0:  [[200,180,180]],
-                // i5:  [[200,90,90]],
-                // i10: [[230,90,90]],
-                // i15: [[255,180,180]],
-                // i20: [[255,90,90]]
-                // i0:  [[255,17,17]],
-                // i5:  [[255,65,65]],
-                // i10: [[255,98,98]],
-                // i15: [[255,128,128]],
-                // i20: [[255,174,174]]
             }
         },
         yellow: {
@@ -95,13 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 i10:  [[255,244,40]],
                 i15: [[254,250,40]], 
                 i20: [[255,250,140]]
-                
-
-                // i0:  [[255,223,87]],
-                // i5:  [[255,244,140]],
-                // i10: [[254,255,170]], 
-                // i15: [[255,255,197]], 
-                // i20: [[255,255,231]]
             }
         }
     }
@@ -215,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     /**
-     * Generages initial values for g3 object for a given color
+     * Generates initial values for g3 object for a given color
      * @param {object} colorObject 
      */
     function generatesBaseG3(color) {
@@ -329,16 +301,16 @@ document.addEventListener('DOMContentLoaded', () => {
             limit1 = gNumber;
             limit2 = gNumber;
         }
-        let count = 0;
+        // let count = 0;
         let rgbValues = [];
         const gridElement = grid.querySelectorAll('div');
         for ( let i = 0; i < limit1; i ++) {
             for (let j = 0; j < limit2; j ++) {
                 let color = rgbTextGenerator(colorArray[i][j]);
                 gridElement[count].style.backgroundColor = color;
-                gridElement[count].textContent = color+","+count;
+                // gridElement[count].textContent = color+","+count;
                 rgbValues.push(color);
-                count ++;
+                // count ++;
             }   
         }
         return(rgbValues);
@@ -427,7 +399,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 });
-
-// Fragment RGB Values for each grid
-
-// Need 6 extra for black in high

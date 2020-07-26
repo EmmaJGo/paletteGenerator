@@ -1,12 +1,13 @@
-
+/* <----General Layout----> */
 .page {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, minmax(50px, auto));
+    grid-template-rows: repeat(4, minmax(50px, auto));
     grid-template-areas: 
         "banner"
         "pageContentData"
+        "palette"
         "footer";
  }
  
@@ -27,7 +28,65 @@
     grid-area: footer;
  }
 
+ /* <----Palette----> */
+ #palette {
+    grid-area: palette;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(50px, auto));
+    grid-template-areas: 
+        "buttonNav"
+        "gridSection"
+        "rgbSection";
+ }
+
+ .buttonNav {
+    grid-area: buttonNav;
+ }
+
+ #gridSection {
+     grid-area: gridSection;
+ }
+
+ #rgbSection {
+     grid-area: rgbSection;
+ }
+
+/* <----------------------------->
+ <----Elements of Palette----> */
+
+/* <----Button Nav----> */
+ .buttonNav {
+     display: flex;
+     justify-content: space-evenly;
+ }
+
+/* <----Grid----> */
+#gridSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* <----RgbValues----> */
+#rgbSection {
+    display: flex;
+    justify-content: center;
+}
+
+.rgbValues { 
+    margin: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* <----Media Queries----> */
 @media (min-width: 600px) {
+    .pageContentData {
+        margin-top: 8em;
+    }
+    
     .banner {
         display: flex;
         justify-content: space-around;
@@ -52,7 +111,13 @@
                     -160px 0px 0px 0px rgba(211, 211, 211, 0.05),
                     0px 100px 0px 0px rgba(211, 211, 211, 0.05);
     }
-                    
+
+    .button,
+    #tryAgain {
+        font-size: 1.3em;
+        width: 140px;
+        height: 70px;
+    }
 }
 
 @media (min-width: 800px) {
@@ -92,5 +157,14 @@
                     -480px 0px 0px 0px rgba(211, 211, 211, 0.01);
     }
 
+    .pageContentData {
+        margin-top: 7em;
+    }
+
+    .button,
+    #tryAgain {
+        width: 200px;
+        height: 60px;
+    }
 
 }

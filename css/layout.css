@@ -131,6 +131,7 @@
         margin: 2em;
     }
     .pageContent {
+        margin-top: 7em;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: repeat(2, auto);

@@ -146,7 +146,6 @@ form {
     max-width: 450px;
     margin: 0 auto;
     padding-left: 20px;
-    /* margin-bottom: 100px; */
     border: 1px solid lightgrey;
     border-radius: 10px;
     box-shadow: 0 20px 20px rgba(0,0,50, .15);
@@ -158,6 +157,7 @@ form {
 #show1,
 #show2,
 #hide2,
+#show3,
 #hide3 {
     display: none;
 }
@@ -259,43 +259,45 @@ input[type="radio"]:checked + label {
     background:  rgba(255, 0, 0, 0.541);
 }
 
-/* .transitionData {
-    display: flex;
-    flex-direction: row;
-} */
-
 .btn:hover {
     cursor: pointer;
 }
 
 /* ------------------------>> PALETTE*/
-#palette {
-    padding-bottom: 7em;
-}
 
-#gridSection{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
+.button, 
+#tryAgain {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(211, 211, 211, 0.5);
+    border: grey;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2em;
 }
-
-#rgbSection {
-    display: flex;
-    flex-direction: row;
-    
-}
-
-/* #grid {
-    text-align: center;
-    display: flex;
-    flex: 1 50%;
-} */
 
 .dot {
+    display: inline-block;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    /* display: inline-block; */
+}
+
+#gridSection {
+    margin: 20px;
+}
+
+.rgbValues {
+    color: rgb(211, 211, 211);
+    background-color: rgba(211, 211, 211, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    /* text-align: center; */
+    font-size: 1em;
+    line-height: 2em;
+}
+
+#rgbValues {
+    background-color: rgba(211, 211, 211, 0.3);
 }
 

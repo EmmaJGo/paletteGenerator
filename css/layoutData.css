@@ -40,11 +40,14 @@
         "rgbSection";
  }
 
- .buttonNav {
+ #buttonNav {
     grid-area: buttonNav;
+    /* margin-bottom: 5em; */
+    width: 100%;
  }
 
  #gridSection {
+     margin-top: 8em;
      grid-area: gridSection;
  }
 
@@ -56,15 +59,17 @@
  <----Elements of Palette----> */
 
 /* <----Button Nav----> */
- .buttonNav {
+ #buttonNav {
      display: flex;
      justify-content: space-evenly;
+     position: fixed;
  }
 
 /* <----Grid----> */
 #gridSection{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
@@ -84,7 +89,7 @@
 /* <----Media Queries----> */
 @media (min-width: 600px) {
     .pageContentData {
-        margin-top: 8em;
+        margin-top: 7em;
     }
     
     .banner {

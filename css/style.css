@@ -13,7 +13,6 @@
 }
 
 .menu {
-    font-size: 1.1em;
     color: gray;
     padding: 5px 5px;
     border: 3px rgb(211, 211, 211) solid;
@@ -32,11 +31,9 @@
 
 .navBar:hover .navList {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: center;
     font-size: 1.1em;
-    /* background-color: rgba(211, 211, 211, 0.08); */
-    /* padding: 10px 10px; */
 }
 
 .navList li {
@@ -44,9 +41,14 @@
 }
 
 /* Elements*/
+.banner {
+    background-color: white;
+    text-align: center;
+}
+
 a {
     text-decoration: none;
-    color: darkgray;
+    color: rgb(211, 211, 211);
     padding: 5px 5px;
     margin: 5px 5px;
     border-radius: 3px;
@@ -56,8 +58,6 @@ a:hover {
     color: white;
     background-color: lightgrey;
     padding: 10px 30px;
-
-    
 }
 
 h1, 
@@ -65,12 +65,21 @@ h1,
     color: red;
     text-shadow: 3px 3px lightgray;
     margin-inline-start: 0;
-    /* margin: 0 15px; */
 }
 
-/* body {
-   margin-left: 0; 
-} */
+h1 {
+    font-size: 3em;
+    margin-bottom: 0;
+}
+
+#subheading {
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+.pageContent {
+    margin-top: 11em;
+}
 
 .images {
     border: 2px solid darkgray;
@@ -80,26 +89,30 @@ h1,
 }
 
 section h2 {
-    /* padding: .2em; */
     text-transform: uppercase;
     text-align: center;
     color: red;
     font-style: bold;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .column {
     text-align: center;
     font-size: 1em;
-    /* margin-bottom: 2em; */
 }
 
 p {
-    font-size: 1.1em;
+    font-size: 1.2em;
     line-height: 1.5em;
+    color: gray;
+    margin-right: 2em;
+    margin-left: 2em;
 }
 
-.transitionIntro h2 {
-    /* padding-bottom: .5em; */
+.transitionIntro {
+    background-color: rgba(255, 217, 0, 0.959);
+    padding: 1em;
+    text-align: center;
+    margin-top: 2em;
 }
 
 .transitionIntro a {
@@ -116,14 +129,20 @@ p {
     background-color: white;
 }
 
+.footer {
+    background-color: rgb(90, 86, 86);
+    color: lightgray;
+    text-align: center;
+    padding: 1.5em 0;
+}
+
 /* ------------------------>> DATA.HTML*/
 
 form {
-    /* box-sizing: border-box; */
     max-width: 450px;
     margin: 0 auto;
     padding-left: 20px;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
     border: 1px solid lightgrey;
     border-radius: 10px;
     box-shadow: 0 20px 20px rgba(0,0,50, .15);
@@ -221,21 +240,6 @@ input[type="radio"]:checked + label {
     border: 5px solid whitesmoke;
 }
 
-/* select {
-    background-color: lightgray;
-    color: white;
-    border-radius: 5px;
-    border: 2px silver solid;
-}
-
-select:hover {
-    background-color: rgba(211, 211, 211, 0.39);
-}
-
-option {
-    background: red;
-} */
-
 .btn {
     background: red;
     border: none;
@@ -251,16 +255,16 @@ option {
     background:  rgba(255, 0, 0, 0.541);
 }
 
-.transitionData {
+/* .transitionData {
     display: flex;
     flex-direction: row;
-}
+} */
 
 .btn:hover {
     cursor: pointer;
 }
 
-/* ------------------------>> PALETTE.HTML*/
+/* ------------------------>> PALETTE*/
 #palette {
     padding-bottom: 7em;
 }
@@ -291,155 +295,3 @@ option {
     /* display: inline-block; */
 }
 
-/* Layout */
-
-/* .banner {
-    /* position: fixed;
-    left: 0;
-    top: 0;
-    background-color: white;
-    width: 100%; /*Needed so that sticky header background is not translucent*/
-    /* padding-bottom: 1.9em; /* Needed so that sticky back white covers all */
-    /* display: flex;
-    justify-content: space-between; */
-/* } */
-
-/* .header {
-    /* display: flex; 
-    flex-direction: column;
-    align-items: flex-start; */
-    /* margin-left: 2em;
-    margin-top: 1.5em;
-} */
-
-/* .text { */
-    /* margin: 0 2em; */
-    /* color: gray;
-} */
-
-.transitionIntro {
-    /* display: flex;
-    flex-direction: column; */
-    background-color: rgba(255, 217, 0, 0.959);
-    padding: 1em;
-    text-align: center;
-    /* margin-bottom: 5em; */
-    margin-top: 2em;
-}
-
-footer {
-    /* position: fixed; */
-    /* left: 0;
-    bottom: 0; */
-    /* width: 100%; */
-    text-align: center;
-    background-color: rgb(90, 86, 86);
-    /* padding: 2em 0 2em 0; */
-}
-
-/* Media Queries */
-
- /* @media screen and (min-width: 550px) { 
-    .banner {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .navBar:hover .navList {
-        flex-direction: row;
-        width: 100px;
-        height: auto;
-        padding: 5px 25px;
-    }
-
-    .navList a {
-        padding-left: 5px;
-    }
-
-    .pageContent {
-        margin-top: 8.5em;        
-    }
-
-    .column {
-        color: red;
-    }
-
-    p {
-        text-align: left;
-    }
-    
-    .images {
-        float: left;
-        margin-right: 30px;
-        margin-bottom: 15px;
-    }
-
-    .dots {
-        border-top: none;
-    }
-
-    .figures {
-        display: inline-block;
-    }
-
-    .dots h2 {
-        border-top: solid darkgray 2px;
-    }
-} */
-
-/* @media screen and (min-width: 800px) {
-    .dots h2,
-    .lines h2,
-    .figures h2 {
-        border-top: none;
-    }
-
-    .navBar:hover .navList {
-        width: 450px;
-    }
-
-    .navList a {
-        padding: 5px 30px;
-        justify-content: flex-end;
-    }
-
-    .images {
-        width: 200px;
-        height: 200px;
-    }
-
-    .column {
-        color: darkgray;
-    }
-
-    .text {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .dots,
-    .lines,
-    .figures {
-        padding: 15px;
-    }
-
-    .lines {
-        flex-grow: 5;
-    }
-
-    h2 {
-        text-align: left;
-    }
-
-    .transitionIntro h2 {
-        text-align: center;
-    }
-
-} */
-
-/* @media screen and (min-width: 1100px) {
-    .pageContent {
-        display: flex;
-        flex-direction: row;
-    }
-} */

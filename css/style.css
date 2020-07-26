@@ -152,17 +152,6 @@ form {
     box-shadow: 0 20px 20px rgba(0,0,50, .15);
 }
 
-#tryAgain,
-#showRgb,
-#hideRgb,
-#show1,
-#show2,
-#hide2,
-#show3,
-#hide3 {
-    display: none;
-}
-
 label {
     display: block;
     text-align: left;
@@ -265,6 +254,7 @@ input[type="radio"]:checked + label {
 }
 
 /* ------------------------>> PALETTE*/
+
 #buttonNav {
     background-color: white;
     padding-top: 20px;
@@ -312,6 +302,20 @@ input[type="radio"]:checked + label {
     background-color: rgba(248, 185, 174, 0.5);
 }
 
+#tryAgain,
+.button {
+    display: none;
+}
+
+#grid,
+#grid2,
+#grid3 {
+    background-color: rgba(211, 211, 211, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 1em 0;
+}
+
 .dot {
     display: inline-block;
     width: 30px;
@@ -323,13 +327,8 @@ input[type="radio"]:checked + label {
     margin: 20px;
 }
 
-#grid,
-#grid2,
-#grid3 {
-    background-color: rgba(211, 211, 211, 0.1);
-    padding: 10px;
-    border-radius: 10px;
-    margin: 1em 0;
+.rgbTitle {
+    font-weight: bold;
 }
 
 .rgbValues {
@@ -345,3 +344,6 @@ input[type="radio"]:checked + label {
     background-color: rgba(211, 211, 211, 0.3);
 }
 
+.rgbValue {
+    display: inline-block;
+}

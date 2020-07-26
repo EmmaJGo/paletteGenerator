@@ -40,7 +40,7 @@
     padding: 10px 10px;
 }
 
-/* Elements*/
+/* Elements of Page*/
 .banner {
     background-color: white;
     text-align: center;
@@ -272,14 +272,15 @@ input[type="radio"]:checked + label {
 
 #tryAgain {
     text-align: center;
-    background-color: rgba(211, 211, 211, 0.5);
+    background-color: rgba(230, 222, 118, 0.5);
     border: 2px solid grey;
+    color: grey;
 }
 
 #tryAgain:hover {
     cursor: pointer;
-    background-color: rgba(211, 211, 211, 0.3);
-    border: 2px solid rgba(211, 211, 211, 0.5 );
+    color: rgb(163, 163, 163);
+    border: 3px solid whitesmoke;
 }
 
 .show {
@@ -290,6 +291,7 @@ input[type="radio"]:checked + label {
 
 .show:hover {
     background-color:  rgba(180, 233, 228, 0.5);
+    cursor: pointer;
 }
 
 .hide {
@@ -300,6 +302,7 @@ input[type="radio"]:checked + label {
 
 .hide:hover {
     background-color: rgba(248, 185, 174, 0.5);
+    cursor: pointer;
 }
 
 #tryAgain,
@@ -323,8 +326,16 @@ input[type="radio"]:checked + label {
     border-radius: 50%;
 }
 
-#gridSection {
+#gridSection,
+#grid,
+#grid2,
+#grid3 {
+    display: none;
     margin: 20px;
+}
+
+#rgbSection {
+    display: none;
 }
 
 .rgbTitle {

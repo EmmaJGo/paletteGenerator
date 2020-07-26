@@ -359,8 +359,8 @@ document.addEventListener('DOMContentLoaded', () => {
         triadResult.gNumber = gNumber;
         triadResult.gResolution = gResolution;
         triadResult.color = color;
-        
-        // Validates that three fields of form are filled
+    
+        // Validates that all three fields of the form are filled
         validateInfo(triadResult);   
         
         //Generates grids for chosen resolution and the other two
@@ -368,9 +368,10 @@ document.addEventListener('DOMContentLoaded', () => {
         generateGrid(gNumber,grid2);
         generateGrid(gNumber,grid3);
         
-        // Colors the dots in 2 grids
+        // Colors the dots in main and extra grid. Displays main grid.
         const colorArray = generatesFullColorG(color,gNumber,gResolution);
         const rgbVal = colorTheDots(gNumber,colorArray,grid);
+        displayElement(grid);
         const otherRes = otherResolutions(gResolution);
         const colorArray2 = generatesFullColorG(color,gNumber,otherRes[0]);
         const rgbVal2 = colorTheDots(gNumber,colorArray2,grid2);
@@ -391,13 +392,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showRgbValues(rgbVal,rgbValues);
         showRgbValues(rgbVal2,rgbValues2);
         showRgbValues(rgbVal3,rgbValues3);
-
-        //Hides rgbValues and two extra grids from display
-        hideElement(rgbSection);
-        hideElement(grid2);
-        hideElement(grid3);
         
-        //Selects which buttons to display/hide according to user's action
+        //Displays/hides buttons and sections according to user's selection
         buttonChange(undefined,showRgbB,rgbSection,hideRgbB);
         buttonChange(rgbSection,hideRgbB,undefined,showRgbB);
         buttonChange(undefined,show2B,grid2,hide2B);

@@ -6,7 +6,7 @@
     <title>Palette Generator</title>
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/layoutData.css">
 </head>
 <body class="page">
     <header class="banner">
@@ -14,7 +14,7 @@
             <h1>Palette Generator</h1>
             <h2 id="subheading">Data</h2>
         </div>
-        <nav>
+        <nav class="nav">
             <ul class='navBar'>
                 <span class="menu">menu</span>
                 <div class="navList">
@@ -25,7 +25,8 @@
         </nav>
     </header>
 
-    <main class="pageContent">
+    <!-- <main class="pageContent"> -->
+    <main class="pageContentData">
         <form action="#" method="post" id="inputInfo">
     
             <!-- Palette Number Composition Selection -->
@@ -58,6 +59,7 @@
                 <button class="btn" id="submit" type="button"><span>Submit</span><br>your choices!</button>
             </aside>            
        </form>
+
        <div id="palette">
             <div class="buttonNav">
                 
@@ -68,6 +70,7 @@
                 <button class="button" id="hide2"></button>
                 <button class="button" id="show3"></button>
                 <button class="button" id="hide3"></button>
+                <a id="tryAgain" href='data.html'>Try Again</a>
 
             </div>
             <div id="gridSection">
@@ -80,7 +83,7 @@
                 <div id="rgbValues2"></div>
                 <div id="rgbValues3"></div>
             </div>
-            <a id="tryAgain" href='data.html'>Try Again</a>
+            
         </div>
     </main>
     

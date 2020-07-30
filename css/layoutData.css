@@ -71,12 +71,6 @@
 }
 
 /* <----RgbValues----> */
-#rgbSection {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
-}
 
 .rgbValues { 
     margin: 1.5em;

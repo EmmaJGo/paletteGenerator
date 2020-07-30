@@ -1,5 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // DOM data and palette elements definition
     const subheader = document.getElementById('subheading');
     const form = document.getElementById('inputInfo');
     const gNumberS = document.querySelectorAll('input[name="gNumber"]');
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rgbValues2 = document.getElementById('rgbValues2');
     const rgbValues3 = document.getElementById('rgbValues3');
 
-    // Basic indexed RGB values for each color for the 5x5 grid (g5)
+    // Initialization of Basic indexed RGB values for each color for the 5x5 grid (g5)
     let basicRgbObjects = {
         black: {
             g3: {}, g10: {},
@@ -85,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         yellow: [0,0,1]
     }
 
+    // Displaying and hiding elements functions 
     /**
      * Displays an element on page
      * @param {DOM element} element 
@@ -101,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         element.style.display = 'none';
     }
     
+    // Obtaining values from the selections made by user
     /**
      * Returns user's radio button value selection
      * @param {array} listOptions 
@@ -115,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function of validation of form that requires that 3 selections are made
     /**
      * Validates selection in form's fields have been made
      * Displays grid from values selected
@@ -141,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Array with 2 elements of the resolution values not chosen by user
     /**
      * Returns array with gResolution values not selected by user
      * @param {number} gResolution 
@@ -155,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return(allResolutions);
     }
 
+    // Generates 9, 25, or 100 elements that make up the grid depending on the selection from the user
     /**
      * Generates gNumber*gNumber grid of dots
      * @param {number} gNumber 
@@ -168,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Generates the rgb text from an rgb value contained within an array or 3 numeric elements
     /**
      * Generates rgb text from an array with 3 values
      * @param {array} singleArray 
@@ -184,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (rgb);
     }
     
+    // Selects the 3 initial rgb values for a given color for a 3x3 grid
     /**
      * Generages initial values for g3 object for a given color
      * @param {object} colorObject 
@@ -195,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (basicRgbObjects[color].g3);
     }
     
+    // Selects the 5 initial rgb values for a given color for a 10x10 grid
     /**
      * Generates initial values for g10 object for a given color
      * @param {object} colorObject 
@@ -208,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (basicRgbObjects[color].g10);
     }
 
+    // Based on resolution value chosen, determines what is the spacing to use as the arithmetic change to be applied to an rgbvalue
     /**
      * Determines spacing based on grid resolution
      * @param {number} gResolution 
@@ -222,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (spacing);
     }
 
+    // Calculates the parameter of change (triad in an array) for a given color, for a given resolution
     /**
      * Determines triad resolution for resolution and color values
      * @param {number} gResolution 
@@ -237,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (spacedIndexed);
     }
 
+    // Alters an rgb value with the triad of change for the specific case
     /**
      * Specifically alters individuals rgb triads according to color and resolution
      * @param {array} singleRgbArray 
@@ -255,6 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (newRgbArray);
     }
 
+    // Generates all rgbvalues by applying previous function to each previous value
     /**
      * Generates full basic values for 3x3, 5x5, or 10x10 grid
      * @param {string} color 
@@ -285,6 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return(gArray);
     }
 
+    // Assigns each rgbvalue to each circle in the grid
     /**
      * Gives rgb value to each circle in grid from values in array
      * @param {number} gNumber 
@@ -314,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return(rgbValues);
     }
 
+    // Displays rgb values generated for the grid with all resolutions
     /**
      * Displays rgbValues on DOM
      * @param {array} rgbValues 
@@ -324,6 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
     }
 
+    // Displays/Hides a DOM element and changes the button to switch it back to Hide/Display
     /**
      * Upon click of button changes text of button and shows/displays content
      * @param {DOM element} sectionToHide 
@@ -350,6 +367,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     };
 
+
+    // Upon submiting info from form
     submit.addEventListener('click', () => {
         // Initializes variables with user's info selected from form
         const triadResult = {};

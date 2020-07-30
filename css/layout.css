@@ -27,6 +27,8 @@
     grid-area: footer;
  }
 
+
+/* <----Media Queries----> */
 @media (min-width: 600px) {
     .banner {
         display: flex;

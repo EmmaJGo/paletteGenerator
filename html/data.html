@@ -25,6 +25,7 @@
         </nav>
     </header>
 
+    <!-- Input Form -->
     <main class="pageContentData">
         <form action="#" method="post" id="inputInfo">
     
@@ -54,35 +55,42 @@
                 <input type="radio" id="yellow" name="color" value="yellow"><label class="colorFlag" for="yellow">Yellow</label><br>
             </div>
 
+            <!-- Submit info from form -->
             <aside class="transitionData">
                 <button class="btn" id="submit" type="button"><span>Submit</span><br>your choices!</button>
             </aside>            
        </form>
 
-       <!-- Results to be Displayed Here-->
+       <!-- Palette to be Displayed Here-->
        <div id="palette">
            <!-- Interactive Button Nav for User -->
             <div id="buttonNav">
+                <!-- Shows/Hides first non-selected grid -->
                 <div class="show2">
                     <button class="button show" id="show2"></button>
                     <button class="button hide" id="hide2"></button>
                 </div>
+                <!-- Shows/Hides other non-selected grid -->
                 <div class="show3">
                     <button class="button show" id="show3"></button>
                     <button class="button hide" id="hide3"></button>
                 </div>
+                <!-- Shows/Hides all rgbValues from 3 resolutions  -->
                 <div class="showRgb">
                     <button class="button show" id="showRgb">Show all RGB Values</button>
                     <button class="button hide" id="hideRgb">Hide all RGB Values</button>
                 </div>
-
+                <!-- Returns user to blank input form to start again -->
                 <a id="tryAgain" href='data.html'>Try Again</a>
             </div>
 
             <!-- Grids Display Here -->
             <div id="gridSection">
+                <!-- User's selected grid -->
                 <div id="grid"></div>
+                <!-- First non-selected grid -->
                 <div id="grid2"></div>
+                <!-- Second non-selected grid -->
                 <div id="grid3"></div>
             </div>
 
